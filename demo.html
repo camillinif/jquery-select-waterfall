@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="jquery.select.waterfall.js"></script>
+    </head>
+    <body>
+        <select id="select-1" data-waterfall>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+        </select>
+        <select id="select-2" data-waterfall data-parent="#select-1" >
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+        </select>
+        <select id="select-3" data-waterfall data-parent="#select-2" >
+                <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            </select>
+    </body>
+</html>
