@@ -41,7 +41,10 @@ $(document).ready(function(){
                 var select = this;
     
                 loadingElement = $('[data-loading-for="#'+$(this).attr('id')+'"]');
-                event.data.loadingCallback(loadingElement);
+                if (loadingElement) {
+                    event.data.loadingCallback(loadingElement);
+                }
+                
                 $(this).data('loading-element');
                 $.when(getData())
                     .then(function(optionValue){
@@ -61,7 +64,10 @@ $(document).ready(function(){
                         });
                   }).then(function(){
                     loadingElement = $('[data-loading-for="#'+$(select).attr('id')+'"]');
-                    event.data.completeLoadingCallback(loadingElement);
+
+                    if (loadingElement) {
+                        event.data.completeLoadingCallback(loadingElement);
+                    }
                   });
 
                 event.data.firstChild = false;
