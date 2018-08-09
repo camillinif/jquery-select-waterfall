@@ -1,11 +1,3 @@
-$(document).ready(function(){
-    $('#select-1').initWaterfall({
-        removeFirst: false,
-        loadingCallback: loadingStyle,
-        completeLoadingCallback: normalStyle,
-    });
-});
-
 (function ($){
 
     var waterfallSettings;
@@ -68,6 +60,7 @@ $(document).ready(function(){
                     if (loadingElement) {
                         event.data.completeLoadingCallback(loadingElement);
                     }
+
                   });
 
                 event.data.firstChild = false;

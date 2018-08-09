@@ -1,3 +1,11 @@
+$(document).ready(function(){
+    $('#select-1').initWaterfall({
+        removeFirst: false,
+        loadingCallback: loadingStyle,
+        completeLoadingCallback: normalStyle,
+    });
+});
+
 function test() {
     return $.ajax({
         url: 'https://jsonplaceholder.typicode.com/todos'
