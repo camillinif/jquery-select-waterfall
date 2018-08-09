@@ -89,3 +89,14 @@ the attribute must be enhanced in this way:
     <option selected disabled>[Select an option]</option>
 </select>
 ```
+
+## Stylish loading
+
+Additionally, you can add loading effect during the execution of the data recovery function.
+To obtain this:
+
+1. add an element that will manage the loading effect and add data-loading-for with the id of relative select element
+
+```html
+<span id='loading-1' data-loading-for='#select-2'></span>
+```
