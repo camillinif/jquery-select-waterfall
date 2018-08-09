@@ -11,6 +11,7 @@ Let's start with an example
 
 1. assign an `id` for every `select` element 
 
+```html
 <select id="select-1">
     <option value=1>A</option>
     <option value=2>B</option>
@@ -20,6 +21,7 @@ Let's start with an example
 <select id="select-2">
     <option selected disabled>[Select an option]</option>
 </select>
+```
 
 2. add `data-waterfall` attribute into all `select` element into dependency chain
 
