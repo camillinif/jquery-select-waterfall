@@ -64,3 +64,28 @@ Let's start with an example
     <option selected disabled>[Select an option]</option>
 </select>
 ```
+
+1. add `data-value-property` and `data-label-property` attributes with property names that, respectively, contains value and property for every option into select element
+
+For example, if the callback function returns an array of object like 
+
+```json
+[
+    {
+        id = 'A'
+        name = 'Apple'
+    },
+    {
+        id = 'B'
+        name = 'Banana'
+    }
+]
+```
+
+the attribute must be enhanced in this way
+
+```html
+<select id="select-2" data-waterfall data-parent="#select-1" data-origin='callbackForSelect2' data-value-property="id" data-label-property="name">
+    <option selected disabled>[Select an option]</option>
+</select>
+```
