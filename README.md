@@ -9,10 +9,10 @@ Let's start with an example
 
 ## JS Setup
 
-Call the function
+Call the function on the root element of select chain 
 
 ```js
-$('#rootSelect').initWaterfall();
+$('#select-1').initWaterfall();
 ```
 
 Additionally, you can pass an options object; the plugin accepts this option:
