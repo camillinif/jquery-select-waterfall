@@ -14,6 +14,7 @@ $(document).ready(function(){
 
         waterfallSettings = $.extend({
             root: true,
+            firstChild: true,
             removeFirst: false,
             addWrapperData: false,
             loadingCallback: undefined,
@@ -32,36 +33,39 @@ $(document).ready(function(){
                 $(this).find('option').remove();    
             }
 
-            dataOrigin = $(this).data('origin');
+            if (event.data.firstChild) {
+                dataOrigin = $(this).data('origin');
 
-            var getData = eval(dataOrigin);
-            var dataOriginValue;
-            var select = this;
+                var getData = eval($(this).data('origin'));
+                var dataOriginValue;
+                var select = this;
+    
+                loadingElement = $('[data-loading-for="#'+$(this).attr('id')+'"]');
+                event.data.loadingCallback(loadingElement);
+                $(this).data('loading-element');
+                $.when(getData())
+                    .then(function(optionValue){
+                        if (event.data.addWrapperData) {
+                            dataOriginValue = {
+                                data: optionValue
+                            }    
+                        } else {
+                            dataOriginValue = optionValue;
+                        }
+                    }).then(function(){
+                        $.each(dataOriginValue.data, function(index, element){
+                            var option = $("<option></option>");
+                            option.text(element[$(select).data('label-property')]);
+                            option.val(element[$(select).data('value-property')]);
+                            $(select).append(option);
+                        });
+                  }).then(function(){
+                    loadingElement = $('[data-loading-for="#'+$(select).attr('id')+'"]');
+                    event.data.completeLoadingCallback(loadingElement);
+                  });
 
-            loadingElement = $('[data-loading-for="#'+$(this).attr('id')+'"]');
-            event.data.loadingCallback(loadingElement);
-            $(this).data('loading-element');
-            $.when(getData())
-                .then(function(optionValue){
-                    if (event.data.addWrapperData) {
-                        dataOriginValue = {
-                            data: optionValue
-                        }    
-                    } else {
-                        dataOriginValue = optionValue;
-                    }
-                }).then(function(){
-                    $.each(dataOriginValue.data, function(index, element){
-                        var option = $("<option></option>");
-                        option.text(element[$(select).data('label-property')]);
-                        option.val(element[$(select).data('value-property')]);
-                        $(select).append(option);
-                    });
-              }).then(function(){
-                loadingElement = $('[data-loading-for="#'+$(select).attr('id')+'"]');
-                event.data.completeLoadingCallback(loadingElement);
-              });
-
+                event.data.firstChild = false;
+            } 
         } else {
             event.data = $.extend(event.data, {
                 root:false
@@ -75,7 +79,8 @@ $(document).ready(function(){
 
         if(!childSelectArray.length) {
             event.data = $.extend(event.data, {
-                root:true
+                root:true,
+                firstChild:true
             });
         }
     }
