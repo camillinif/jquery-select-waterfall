@@ -7,7 +7,21 @@ Let's start with an example
 
 [Demo](https://jsfiddle.net/camillinif/xpvt214o/579306/)
 
-## Setup
+## JS Setup
+
+Call the function
+
+```js
+$('#rootSelect').initWaterfall();
+```
+
+Additionally, you can pass an options object; the plugin accepts this option:
+
+- `removeFirst` (default `false`): if the first option of select element is a placeholder, with this option you can choose to maintain this options
+- `loadingCallback`: this callback will be called during the recovery of select data (can be used for stilize the loading)
+- `completeLoadingCallback`: this callback will be called when the select has been updated
+
+## HTML Setup
 
 1. assign an `id` for every `select` element 
 
@@ -100,3 +114,5 @@ To obtain this:
 ```html
 <span id='loading-1' data-loading-for='#select-2'></span>
 ```
+
+In combination with the `loadingCallback` and `completeLoadingCallback`, you can stilyze this element
