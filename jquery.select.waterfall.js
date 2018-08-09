@@ -18,7 +18,7 @@ $(document).ready(function(){
             removeFirst: false,
             addWrapperData: false,
             loadingCallback: undefined,
-            completeLoadingCallback: undefined
+            completeLoadingCallback: undefined,
         },options);
 
         $('select[data-waterfall]').on('change', null, $.extend(waterfallSettings,{root:true}), this.updateChild);
