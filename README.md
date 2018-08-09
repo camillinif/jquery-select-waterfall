@@ -72,12 +72,12 @@ For example, if the callback function returns an array of object like
 ```json
 [
     {
-        'id': 'A',
-        'name': 'Apple'
+        "id": "A",
+        "name": "Apple"
     },
     {
-        'id': 'B',
-        'name': 'Banana'
+        "id": "B",
+        "name": "Banana"
     }
 ]
 ```
