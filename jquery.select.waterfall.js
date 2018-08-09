@@ -1,6 +1,8 @@
 $(document).ready(function(){
     $('#select-1').initWaterfall({
-        removeFirst: false
+        removeFirst: false,
+        loadingCallback: loadingStyle,
+        completeLoadingCallback: normalStyle,
     });
 });
 
@@ -14,6 +16,8 @@ $(document).ready(function(){
             root: true,
             removeFirst: false,
             addWrapperData: false,
+            loadingCallback: undefined,
+            completeLoadingCallback: undefined
         },options);
 
         $('select[data-waterfall]').on('change', null, $.extend(waterfallSettings,{root:true}), this.updateChild);
@@ -34,6 +38,9 @@ $(document).ready(function(){
             var dataOriginValue;
             var select = this;
 
+            loadingElement = $('[data-loading-for="#'+$(this).attr('id')+'"]');
+            event.data.loadingCallback(loadingElement);
+            $(this).data('loading-element');
             $.when(getData())
                 .then(function(optionValue){
                     if (event.data.addWrapperData) {
@@ -50,9 +57,10 @@ $(document).ready(function(){
                         option.val(element[$(select).data('value-property')]);
                         $(select).append(option);
                     });
+              }).then(function(){
+                loadingElement = $('[data-loading-for="#'+$(select).attr('id')+'"]');
+                event.data.completeLoadingCallback(loadingElement);
               });
-
-            
 
         } else {
             event.data = $.extend(event.data, {
@@ -82,4 +90,12 @@ function test() {
             data: data
         }
     });
+}
+var loadingStyle = function (element) {
+    $(element).html('carico');
+}
+
+var normalStyle = function (element) {
+    console.log(1);
+    $(element).html('');
 }

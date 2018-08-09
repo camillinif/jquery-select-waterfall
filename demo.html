@@ -10,12 +10,26 @@
             <option value=2>2</option>
             <option value=3>3</option>
         </select>
+        <span id='loading-1' data-loading-for='#select-2'></span>
         <select id="select-2" data-waterfall data-parent="#select-1" data-origin='test' data-label-property='title' data-value-property='id'>
                 <option value=1>1</option>
                 <option value=2>2</option>
                 <option value=3>3</option>
         </select>
-        <select id="select-3" data-waterfall data-parent="#select-2" data-origin='test' data-label-property='title' data-value-property='id'>
+        <span id='loading-2'></span>
+        <select id="select-3" data-waterfall data-parent="#select-2" data-origin='test' data-label-property='title' data-value-property='id' data-loading-element='#loading-2'>
+                <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            </select>
+            <span id='loading-3'></span>
+            <select id="select-4" data-waterfall data-parent="#select-3" data-origin='test' data-label-property='title' data-value-property='id' data-loading-element='#loading-3'>
+                <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            </select>
+            <span id='loading-4'></span>
+            <select id="select-5" data-waterfall data-parent="#select-4" data-origin='test' data-label-property='title' data-value-property='id' data-loading-element='#loading-4'>
                 <option value=1>1</option>
             <option value=2>2</option>
             <option value=3>3</option>
