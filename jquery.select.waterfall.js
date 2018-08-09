@@ -1,37 +1,85 @@
 $(document).ready(function(){
-    $('#select-1').initWaterfall();
+    $('#select-1').initWaterfall({
+        removeFirst: false
+    });
 });
 
 (function ($){
-    $.fn.initWaterfall = function(){
 
-    $('select[data-waterfall]').on('change', null, 'root', this.updateChild);
+    var waterfallSettings;
+
+    $.fn.initWaterfall = function(options){
+
+        waterfallSettings = $.extend({
+            root: true,
+            removeFirst: false,
+            addWrapperData: false,
+        },options);
+
+        $('select[data-waterfall]').on('change', null, $.extend(waterfallSettings,{root:true}), this.updateChild);
     }
+
     $.fn.updateChild = function(event){
-        if(event.data !== 'root') {
-            $(this).find('option:not(:first)').remove();
+        
+        if (!event.data.root) {
+            if(!event.data.removeFirst) {
+                $(this).find('option:not(:first)').remove();    
+            } else {
+                $(this).find('option').remove();    
+            }
+
             dataOrigin = $(this).data('origin');
 
-            var a = eval(dataOrigin);
-            var dfd = jQuery.Deferred();
+            var getData = eval(dataOrigin);
+            var dataOriginValue;
+            var select = this;
 
-            dfd.promise(a);
-            a.done(function(data){
-                console.log(data);
+            $.when(getData())
+                .then(function(optionValue){
+                    if (event.data.addWrapperData) {
+                        dataOriginValue = {
+                            data: optionValue
+                        }    
+                    } else {
+                        dataOriginValue = optionValue;
+                    }
+                }).then(function(){
+                    $.each(dataOriginValue.data, function(index, element){
+                        var option = $("<option></option>");
+                        option.text(element[$(select).data('label-property')]);
+                        option.val(element[$(select).data('value-property')]);
+                        $(select).append(option);
+                    });
+              });
+
+            
+
+        } else {
+            event.data = $.extend(event.data, {
+                root:false
             });
-        } 
-
-
+        }
 
         var childSelectArray = $('select[data-parent="#'+$(this).attr('id')+'"]');
-        childSelectArray.each($(this).updateChild);
+        childSelectArray.each(function(){
+            $(this).updateChild(event);
+        });
+
+        if(!childSelectArray.length) {
+            event.data = $.extend(event.data, {
+                root:true
+            });
+        }
     }
+
 }(jQuery));
 
 function test() {
-    return [3,2,1];
-}
-
-function test2() {
-    return [3,4,5];
+    return $.ajax({
+        url: 'https://jsonplaceholder.typicode.com/todos'
+    }).then(function(data){
+        return {
+            data: data
+        }
+    });
 }
