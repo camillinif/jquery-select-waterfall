@@ -20,6 +20,7 @@ Additionally, you can pass an options object; the plugin accepts this option:
 - `removeFirst` (default `false`): if the first option of select element is a placeholder, with this option you can choose to maintain this options
 - `loadingCallback`: this callback will be called during the recovery of select data (can be used for stilize the loading)
 - `completeLoadingCallback`: this callback will be called when the select has been updated
+- `disableWhenIsEmpty` (default `true`): disable the select box when it is empty 
 
 ## HTML Setup
 
