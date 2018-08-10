@@ -116,4 +116,5 @@ To obtain this:
 <span id='loading-1' data-loading-for='#select-2'></span>
 ```
 
-In combination with the `loadingCallback` and `completeLoadingCallback`, you can stilyze this element
+In combination with the `loadingCallback` and `completeLoadingCallback`, you can stilyze this element.
+The elements with `data-loading-for` are passed as parameter to callback function.
