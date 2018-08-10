@@ -14,7 +14,7 @@
             completeLoadingCallback: undefined,
         },options);
 
-        $('[data-waterfall]').on('change', null, $.extend(waterfallSettings,{root:true}), this.updateChild);
+        return $('[data-waterfall]').on('change', null, $.extend(waterfallSettings,{root:true}), this.updateChild);
     }
 
     $.fn.updateChild = function(event){
