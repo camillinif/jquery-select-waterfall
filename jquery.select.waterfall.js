@@ -30,11 +30,6 @@
                 if (event.data.disableSelectWhenEmpty) {
                     $(this).prop('disabled', true);
                 }
-
-                loadingElement = $('[data-loading-for="#'+$(select).attr('id')+'"]');
-                if (event.data.completeLoadingCallback) {
-                    event.data.completeLoadingCallback(loadingElement);
-                }
             }
 
             if (event.data.firstChild) {
@@ -79,6 +74,13 @@
                   });
 
                 event.data.firstChild = false;
+            } else {
+                $.when(this).then(function(){
+                    loadingElement = $('[data-loading-for="#'+$(select).attr('id')+'"]');
+                    if (event.data.completeLoadingCallback) {
+                        event.data.completeLoadingCallback(loadingElement);
+                    }
+                });
             } 
         } else {
             event.data = $.extend(event.data, {
