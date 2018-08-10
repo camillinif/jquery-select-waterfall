@@ -52,7 +52,7 @@ Additionally, you can pass an options object; the plugin accepts this option:
 </select>
 ```
 
-3. add `data-parent` attribute assigning the select by id of parent select
+3. add `data-parent` attribute assigning the select by id of parent select; an element can be have more parents; the `data-parent` attribute's value must be writter with array notation
 
 ```html
 <select id="select-1" data-waterfall>
@@ -61,7 +61,7 @@ Additionally, you can pass an options object; the plugin accepts this option:
     <option value=3>C</option>
 </select>
 
-<select id="select-2" data-waterfall data-parent="#select-1">
+<select id="select-2" data-waterfall data-parent='["#select-1", "#select-1b"]'>
     <option selected disabled>[Select an option]</option>
 </select>
 ```
