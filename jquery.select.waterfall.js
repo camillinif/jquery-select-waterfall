@@ -33,7 +33,7 @@
                 var select = this;
     
                 loadingElement = $('[data-loading-for="#'+$(this).attr('id')+'"]');
-                if (loadingElement) {
+                if (loadingElement.length() > 0) {
                     event.data.loadingCallback(loadingElement);
                 }
                 
@@ -57,7 +57,7 @@
                   }).then(function(){
                     loadingElement = $('[data-loading-for="#'+$(select).attr('id')+'"]');
 
-                    if (loadingElement) {
+                    if (loadingElement.length() > 0) {
                         event.data.completeLoadingCallback(loadingElement);
                     }
 
