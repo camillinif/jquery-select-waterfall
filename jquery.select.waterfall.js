@@ -66,11 +66,7 @@
 
                   }).then(function(){
                     loadingElement = $('[data-loading-for="#'+$(select).attr('id')+'"]');
-
-                    if (loadingElement.length() > 0) {
-                        event.data.completeLoadingCallback(loadingElement);
-                    }
-
+                    event.data.completeLoadingCallback(loadingElement);
                   });
 
                 event.data.firstChild = false;
