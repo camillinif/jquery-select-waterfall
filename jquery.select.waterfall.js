@@ -28,6 +28,11 @@
                 if (event.data.disableSelectWhenEmpty) {
                     $(this).prop('disabled', true);
                 }
+
+                loadingElement = $('[data-loading-for="#'+$(select).attr('id')+'"]');
+                if (event.data.completeLoadingCallback) {
+                    event.data.completeLoadingCallback(loadingElement);
+                }
             }
 
             if (event.data.firstChild) {
