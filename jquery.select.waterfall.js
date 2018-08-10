@@ -75,12 +75,10 @@
 
                 event.data.firstChild = false;
             } else {
-                $.when(this).then(function(){
-                    loadingElement = $('[data-loading-for="#'+$(select).attr('id')+'"]');
-                    if (event.data.completeLoadingCallback) {
-                        event.data.completeLoadingCallback(loadingElement);
-                    }
-                });
+                loadingElement = $('[data-loading-for="#'+$(select).attr('id')+'"]');
+                if (event.data.completeLoadingCallback) {
+                    event.data.completeLoadingCallback(loadingElement);
+                }
             } 
         } else {
             event.data = $.extend(event.data, {
