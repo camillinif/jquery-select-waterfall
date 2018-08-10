@@ -10,6 +10,7 @@
             removeFirst: false,
             addWrapperData: false,
             loadingCallback: undefined,
+            disableSelectWhenEmpty: true,
             completeLoadingCallback: undefined,
         },options);
 
@@ -23,6 +24,10 @@
                 $(this).find('option:not(:first)').remove();    
             } else {
                 $(this).find('option').remove();    
+
+                if (event.data.disableSelectWhenEmpty) {
+                    $(this).prop('disabled', true);
+                }
             }
 
             if (event.data.firstChild) {
@@ -54,6 +59,11 @@
                             option.val(element[$(select).data('value-property')]);
                             $(select).append(option);
                         });
+
+                        if (event.data.disableSelectWhenEmpty) {
+                            $(this).prop('disabled', false);
+                        }
+
                   }).then(function(){
                     loadingElement = $('[data-loading-for="#'+$(select).attr('id')+'"]');
 
