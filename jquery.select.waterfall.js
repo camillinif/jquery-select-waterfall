@@ -38,7 +38,7 @@
                 var select = this;
     
                 loadingElement = $('[data-loading-for="#'+$(this).attr('id')+'"]');
-                if (loadingElement.length() > 0) {
+                if (event.data.loadingCallback) {
                     event.data.loadingCallback(loadingElement);
                 }
                 
@@ -66,7 +66,10 @@
 
                   }).then(function(){
                     loadingElement = $('[data-loading-for="#'+$(select).attr('id')+'"]');
-                    event.data.completeLoadingCallback(loadingElement);
+                    if (event.data.completeLoadingCallback) {
+                        event.data.completeLoadingCallback(loadingElement);
+                    }
+                    
                   });
 
                 event.data.firstChild = false;
