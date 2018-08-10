@@ -1,6 +1,7 @@
 (function ($){
 
     var waterfallSettings;
+    var waterfallMap;
 
     $.fn.initWaterfall = function(options){
 
@@ -13,6 +14,8 @@
             disableSelectWhenEmpty: true,
             completeLoadingCallback: undefined,
         },options);
+
+        waterfallMap = mapParentChild();
 
         return $('[data-waterfall]').on('change', null, $.extend(waterfallSettings,{root:true}), this.updateChild);
     }
@@ -86,12 +89,12 @@
             });
         }
 
-        var childSelectArray = $('select[data-parent="#'+$(this).attr('id')+'"]');
-        childSelectArray.each(function(){
-            $(this).updateChild(event);
-        });
-
-        if(!childSelectArray.length) {
+        var childIdsArray = waterfallMap['#'+$(this).attr('id')];
+        if (childIdsArray) {
+            childIdsArray.forEach(function(childId){
+                $('#'+childId).updateChild(event);
+            });    
+        } else {
             event.data = $.extend(event.data, {
                 root:true,
                 firstChild:true
@@ -100,3 +103,21 @@
     }
 
 }(jQuery));
+
+function mapParentChild()
+{
+    var waterfallMap = [];
+    $('[data-parent]').each(function(){
+        var childElement = this;
+        parentsIdsArray = $(childElement).data('parent');
+        parentsIdsArray.forEach(function(parentId){
+            if (!waterfallMap[parentId]) {
+                waterfallMap[parentId] = [];
+            }
+            waterfallMap[parentId].push($(childElement).attr('id'));
+        });
+    });
+
+    return waterfallMap;
+
+}
