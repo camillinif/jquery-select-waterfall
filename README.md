@@ -75,7 +75,7 @@ Additionally, you can pass an options object; the plugin accepts this option:
     <option value=3>C</option>
 </select>
 
-<select id="select-2" data-waterfall data-parent="#select-1" data-origin='callbackForSelect2'>
+<select id="select-2" data-waterfall data-parent='["#select-1", "#select-1b"]' data-origin='callbackForSelect2'>
     <option selected disabled>[Select an option]</option>
 </select>
 ```
@@ -100,7 +100,7 @@ For example, if the callback function returns an array of object like:
 the attribute must be enhanced in this way:
 
 ```html
-<select id="select-2" data-waterfall data-parent="#select-1" data-origin='callbackForSelect2' data-value-property="id" data-label-property="name">
+<select id="select-2" data-waterfall data-parent='["#select-1", "#select-1b"]' data-origin='callbackForSelect2' data-value-property="id" data-label-property="name">
     <option selected disabled>[Select an option]</option>
 </select>
 ```
