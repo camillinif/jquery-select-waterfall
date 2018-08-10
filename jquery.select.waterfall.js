@@ -19,6 +19,8 @@
 
     $.fn.updateChild = function(event){
         
+        var select = this;
+
         if (!event.data.root) {
             if(!event.data.removeFirst) {
                 $(this).find('option:not(:first)').remove();    
@@ -40,7 +42,6 @@
 
                 var getData = eval($(this).data('origin'));
                 var dataOriginValue;
-                var select = this;
     
                 loadingElement = $('[data-loading-for="#'+$(this).attr('id')+'"]');
                 if (event.data.loadingCallback) {
