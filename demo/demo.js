@@ -24,3 +24,7 @@ var normalStyle = function (element) {
     console.log(1);
     $(element).html('');
 }
+
+var testCallback = function(dataOrigin) {
+    console.log(dataOrigin);
+}

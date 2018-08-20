@@ -118,3 +118,11 @@ To obtain this:
 
 In combination with the `loadingCallback` and `completeLoadingCallback`, you can stilyze this element.
 The elements with `data-loading-for` are passed as parameter to callback function.
+
+## Custom callback loading for every element in waterfall
+
+The `completeLoadingCallback` callback is always called for every selectbox in the waterfall; in addition, you can define a costum callback just adding `data-loading-callback` in selectbox
+
+<select id="select-2" data-waterfall data-parent='["#select-1", "#select-1b"]' data-origin='callbackForSelect2' data-loading-callback='custom-loading-callback' data-value-property="id" data-label-property="name">
+    <option selected disabled>[Select an option]</option>
+</select>

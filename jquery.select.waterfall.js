@@ -68,6 +68,11 @@
                             $(this).prop('disabled', false);
                         }
 
+                        if ($(select).data('loading-callback')) {
+                            loadingCallbackFunction = eval($(select).data('loading-callback'));
+                            loadingCallbackFunction(dataOriginValue);
+                        }
+
                   }).then(function(){
                     loadingElement = $('[data-loading-for="#'+$(select).attr('id')+'"]');
                     if (event.data.completeLoadingCallback) {
