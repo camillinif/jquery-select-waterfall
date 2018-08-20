@@ -70,7 +70,7 @@
 
                         if ($(select).data('loading-callback')) {
                             loadingCallbackFunction = eval($(select).data('loading-callback'));
-                            loadingCallbackFunction(dataOriginValue);
+                            loadingCallbackFunction($(select), dataOriginValue);
                         }
 
                   }).then(function(){
