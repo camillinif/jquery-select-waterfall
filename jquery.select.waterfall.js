@@ -29,10 +29,10 @@
                 $(this).find('option:not(:first)').remove();
             } else {
                 $(this).find('option').remove();
+            }
 
-                if (event.data.disableSelectWhenEmpty) {
-                    $(this).prop('disabled', true);
-                }
+            if (event.data.disableSelectWhenEmpty) {
+                $(this).prop('disabled', true);
             }
 
             if (event.data.firstChild) {
@@ -79,6 +79,10 @@
                         event.data.completeLoadingCallback(loadingElement);
                     }
 
+                }).then(function(){
+                    if (event.data.disableSelectWhenEmpty) {
+                        $(select).prop('disabled', false);
+                    }
                 });
 
                 event.data.firstChild = false;
