@@ -128,3 +128,5 @@ The `completeLoadingCallback` callback is always called for every selectbox in t
     <option selected disabled>[Select an option]</option>
 </select>
 ```
+
+The origin data is passed to callback.
