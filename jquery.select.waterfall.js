@@ -32,7 +32,7 @@
             }
 
             if (event.data.disableSelectWhenEmpty) {
-                $(this).prop('disabled', true);
+                $(select).prop('disabled', true);
             }
 
             if (event.data.firstChild) {
@@ -65,7 +65,7 @@
                     });
 
                     if (event.data.disableSelectWhenEmpty) {
-                        $(this).prop('disabled', false);
+                        $(select).prop('disabled', false);
                     }
 
                 }).then(function(){
